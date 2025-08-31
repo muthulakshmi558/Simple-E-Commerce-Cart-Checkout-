@@ -1,0 +1,20 @@
+{% extends 'ecommerceapp/Layout/base.html' %}
+{% block title %}{{ product.name }} - Shop Boss{% endblock %}
+
+{% block content %}
+<div class="flex flex-col md:flex-row gap-6">
+    <div class="md:w-1/2">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="rounded shadow">
+    </div>
+    <div class="md:w-1/2">
+        <h2 class="text-2xl font-bold">{{ product.name }}</h2>
+        <p class="text-gray-700 mt-2">₹{{ product.price }}</p>
+        <p class="mt-4">{{ product.description }}</p>
+        {% if product.is_out_of_stock %}
+            <span class="text-red-600 font-bold mt-4 block">Out of Stock</span>
+        {% else %}
+            <a href="{% url 'add-to-cart' product.pk %}" class="bg-blue-500 text-white px-4 py-2 mt-4 inline-block rounded">Add to Cart</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

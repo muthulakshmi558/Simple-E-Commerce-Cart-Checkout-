@@ -1,0 +1,38 @@
+{% extends 'ecommerceapp/Layout/base.html' %}
+{% block title %}Cart - Shop Boss{% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+
+{% if items %}
+<table class="w-full bg-white rounded shadow">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="p-2">Product</th>
+            <th class="p-2">Price</th>
+            <th class="p-2">Quantity</th>
+            <th class="p-2">Subtotal</th>
+            <th class="p-2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr class="border-t">
+            <td class="p-2">{{ item.product.name }}</td>
+            <td class="p-2">₹{{ item.product.price }}</td>
+            <td class="p-2">{{ item.quantity }}</td>
+            <td class="p-2">${{ item.subtotal }}</td>
+            <td class="p-2">
+                <a href="{% url 'remove-from-cart' item.pk %}" class="bg-red-500 text-white px-2 py-1 rounded">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 class="text-xl font-bold mt-4">Total: ₹{{ total }}</h3>
+
+{% else %}
+<p>Your cart is empty!</p>
+{% endif %}
+{% endblock %}

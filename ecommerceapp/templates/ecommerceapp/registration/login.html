@@ -1,0 +1,11 @@
+{% extends 'ecommerceapp/Layout/base.html' %}
+{% block title %}Login - Shop Boss{% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Login</h2>
+<form method="POST" class="max-w-md bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Login</button>
+</form>
+{% endblock %}
